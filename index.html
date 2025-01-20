@@ -13,13 +13,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-        <div class="add__new__btn__mobile__only">
+        <div class="add__new__btn__mobile__only  d-none d-sm-block d-md-block  d-md-none">
           <button class="btn btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addNewModal">
             <i class="fa fa-plus me-2"></i>Add New Item
             
         </button>
         </div>
-        <!-- Modal -->
+        <!-- Add new Item Modal -->
         <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -28,16 +28,74 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                ...
+                <form>
+
+                  <!--Image  -->
+                  <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Image url</label>
+                    <input type="url" class="form-control" id="imageUrl" aria-describedby="imageDesc" placeholder="https://aditya.com/image.png">
+                    <div id="imageDesc" class="form-text">It's an optional field .</div>
+                  </div>
+
+                  <!-- Title -->
+                  <div class="mb-3">
+                    <label for="taskTitle" class="form-label">Task title</label>
+                    <input type="text" class="form-control" id="taskTitle"  placeholder="Task Title"  required/>
+                   
+                  </div>
+
+                  <!-- Task Type -->
+                  <div class="mb-3">
+                    <label for="tags" class="form-label">Task Type</label>
+                    <input type="text" class="form-control" id="tags"  placeholder="Task Type">
+                   
+                  </div>
+
+                  <!-- Task Description -->
+                  <div class="mb-3">
+                    <label for="taskDescription" class="form-label">Task Description</label>
+                    <textarea type="text" class="form-control" id="taskDescriptiong"  placeholder="Task Description..." required rows="3">
+                      
+                    </textarea>
+                   
+                  </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
         </div>
 
+
+        <!-- Button trigger modal
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+        </button> -->
+
+        <!-- Open task Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Task Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body task__modal__body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">JSBuild Task Management</a>

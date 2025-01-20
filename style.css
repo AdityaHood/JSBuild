@@ -6,3 +6,11 @@
 body {
   background-color: #ebf2ff !important;
 }
+.add__new__btn__mobile__only {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px 12px;
+  background-color: white;
+  width: 100%;
+}
