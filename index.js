@@ -16,11 +16,11 @@ const htmlTaskContent = ({ id, title, description, type, url }) => `
   <div class='card shadow-sm task__card'>
 
     <div class="card-header d-flex justify-content-end task__card__header">
-      <button type="button" class="btn btn-outline-primary mr-1.5" name=${id} onclick="editTask.apply(this,arguments)">
-        <i class="fas fa-pencil-alt name=${id}" > </i>
+      <button type="button" class="btn btn-outline-primary mr-2" name=${id} onclick="editTask.apply(this,arguments)">
+        <i class="fas fa-pencil-alt name=${id}" ></i>
       </button>
 
-      <button type="button" class="btn btn-outline-danger mr-1.5" name=${id} onclick="deleteTask.apply(this,arguments)">
+      <button type="button" class="btn btn-outline-danger mr-2" name=${id} onclick="deleteTask.apply(this,arguments)">
         <i class="fas fa-trash-alt name=${id}  "> </i>
       </button>
     </div>
@@ -28,10 +28,10 @@ const htmlTaskContent = ({ id, title, description, type, url }) => `
       ${
         url
           ? `<img width='100%' src=${url} alt='Card Image' class='card-img-top md-3 rounded-lg' />`
-          : `<img width='100%' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT00PFvOqcps9b_nriqfbhmUdoo8gnpSsz6AzmIbaZJ-Ne2sx5H04MAm6E&s" alt='Card Image' class='card-img-top md-3 rounded-lg' />`
+          : `<img width='100%' src="https://tse1.mm.bing.net/th?id=OIP.F00dCf4bXxX0J-qEEf4qIQHaD6&pid=Api&rs=1&c=1&qlt=95&w=223&h=117" alt='Card Image' class='card-img-top md-3 rounded-lg' />`
       }
       <h4 class='card-title task__card__title'>${title}</h4>
-      <p class='description trim-3-lines'>${description}</p>
+      <p class='description trim-3-lines text-muted'>${description}</p>
       <div class='tags text-white d-flex flex-wrap '>
         <span class='badge bg-primary m-1'>${type}</span>
       </div>
@@ -53,13 +53,13 @@ const htmlModalContent = ({ id, title, description, url }) => {
     ${
       url
         ? `<img width='100%' src=${url} alt='Card Image' class='card-img-top md-3 rounded-lg' />`
-        : `<img width='100%' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT00PFvOqcps9b_nriqfbhmUdoo8gnpSsz6AzmIbaZJ-Ne2sx5H04MAm6E&s" alt='Card Image' class='card-img-top md-3 rounded-lg' />`
+        : `<img width='100%' src="https://tse1.mm.bing.net/th?id=OIP.F00dCf4bXxX0J-qEEf4qIQHaD6&pid=Api&rs=1&c=1&qlt=95&w=223&h=117" alt='Card Image' class='card-img-top md-3 rounded-lg' />`
     }
-      <strong class='text-muted text-sm'>Created on: ${date.toDateString()}</strong>
-      <h2 class='my-3'>${title}</h2>
-      <p class='text-muted'>${description}</p>
-      </div>
-      `;
+    <strong class='text-muted text-sm'>Created on: ${date.toDateString()}</strong>
+    <h2 class='my-3'>${title}</h2>
+    <p class='text-muted'>${description}</p>
+    </div>
+    `;
 };
 
 //Here we convert the  json to => string(i.e, for local storage)
@@ -74,7 +74,7 @@ const updateLocalStorage = () => {
 
 //Where we convert  string to => json(i.e, for rendering the cards on the screen)
 //load inital data
-const LoadInitialData = () => {
+const loadInitialData = () => {
   const localStorageCopy = JSON.parse(localStorage.task);
 
   if (localStorageCopy) state.taskList = localStorageCopy.tasks;
@@ -142,7 +142,7 @@ const deleteTask = (e) => {
 const editTask = (e) => {
   if (!e) e = window.event;
 
-  const targetId = e.targe.id;
+  const targetId = e.target.id;
   const type = e.target.tagName;
 
   let parentNode;
@@ -174,7 +174,7 @@ const editTask = (e) => {
 
 //Save edit
 const saveEdit = (e) => {
-  if (e) e = window.event;
+  if (!e) e = window.event;
 
   const targetId = e.target.id;
   const parentNode = e.target.parentNode.parentNode;
@@ -225,7 +225,14 @@ const searchTask = (e) => {
   while (taskContents.firstChild) {
     taskContents.removeChild(taskContents.firstChild);
   }
-  const resultData = state.taskList.filter(({ title }) => {
-    title.includes(e.target.value);
-  });
+  const resultData = state.taskList.filter(({ title }) =>
+    title.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+
+  // console.log(resultData);
+  resultData.map(
+    (cardData) =>
+      taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardData))
+    // taskContents.insertAdjacentHTML("beforeend", htmlModalContent(cardData))
+  );
 };
