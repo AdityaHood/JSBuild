@@ -133,7 +133,7 @@ const deleteTask = (e) => {
     );
   } else if (type === "I") {
     return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(
-      e.target.parentNode.parentNode.parentNode
+      e.target.parentNode.parentNode.parentNode.parentNode
     );
   }
 };
