@@ -1,0 +1,23 @@
+{
+  "name": "jsbuild",
+  "version": "1.0.0",
+  "description": "serv",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev":"nodemon server.js"
+  },
+  "author": "aditya",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdityaHood/JSBuild.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AdityaHood/JSBuild/issues"
+  },
+  "homepage": "https://github.com/AdityaHood/JSBuild#readme",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
